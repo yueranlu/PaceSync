@@ -7,6 +7,7 @@ class Song(BaseModel):
     name: str
     length: int
     artist: str
+    id: str
 
 app = FastAPI()
 
@@ -18,7 +19,7 @@ sp = spotipy.Spotify(auth_manager = SpotifyOAuth(client_id="b55d399d11934dfc9cc4
 track_history = []
 
 #global function that finds a suitable track for the bpm and genre
-def bpm_to_song(current_tempo, genre): #global function allows code reusability
+def bpm_to_song(current_tempo: int, genre: List[str]) -> Song: #global function allows code reusability
     recommendations = sp.recommendations(
         seed_genres = genre, #users select desired genre, can have multiple as well
         target_tempo = current_tempo, #this will be given by pace-to-BPM code
@@ -26,6 +27,9 @@ def bpm_to_song(current_tempo, genre): #global function allows code reusability
         max_tempo = current_tempo + 5,
         limit = 1
     )
+
+    if not recommendations['tracks']:
+        return {"message": "Track does not exist"}
 
     current_track = recommendations["tracks"][0] #get first track only amongst all recs
     current_artist = [a['name'] for a in current_track['artists']] #displays only the name of the current artist
@@ -57,5 +61,8 @@ async def add_history():
 
 
 @app.get("/history")
-async def get_history():
-    return track_history
+async def get_history(limit: int = 15):
+    if not track_history:
+        return {"message": "Nothing to see here. Start listening!"}
+
+    return track_history[-limit:]
