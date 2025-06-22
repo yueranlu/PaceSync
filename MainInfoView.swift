@@ -4,16 +4,15 @@ import SwiftUI
 struct StepCircleMeter: View {
     @ObservedObject var tracker: StepTracker
     
-    var stepsPerMinute: Double
-    let maxSteps: Double = 250
+    let maxSteps: Double
     
     var progress: Double {
-        min(stepsPerMinute / maxSteps, 1.0)
+        min(tracker.currentSPM / maxSteps, 1.0)
     }
 
     var body: some View {
         ZStack {
-            circleBar(color: Color(hex: "#021bf9"))
+            circleBar(color: Color(hex: "#021bf9"), progress: progress)
                 .frame(width: 175, height: 175)
    
             
@@ -22,7 +21,7 @@ struct StepCircleMeter: View {
                 Text("Steps/Min")
                     .font(.caption)
                     .foregroundColor(.gray)
-                Text("\(Int(stepsPerMinute))")
+                Text("\(Int(tracker.currentSPM))")
                     .font(.title)
                     .bold()
             }
@@ -34,6 +33,7 @@ struct StepCircleMeter: View {
 struct circleBar: View {
     
     let color: Color
+    let progress: Double
     var body: some View{
         
         ZStack{
@@ -42,11 +42,19 @@ struct circleBar: View {
                 .opacity(0.1)
                 .foregroundStyle(color)
             Circle()
+                .trim(from: 0, to: progress)
                 .stroke(style: StrokeStyle(lineWidth: 40, lineCap: .round))
                 .foregroundStyle(color)
+                .rotationEffect(.degrees(90))
+                .foregroundStyle(color)
+                .animation(.easeInOut(duration: 0.3), value: progress)
         }
     }
 }
 #Preview {
-    StepCircleMeter(stepsPerMinute: 10)
+    // ✅ Create a dummy StepTracker with mock data for preview
+    let dummyTracker = StepTracker()
+    dummyTracker.currentSPM = 100 // Simulated SPM value
+
+    return StepCircleMeter(tracker: dummyTracker, maxSteps: 250)
 }
