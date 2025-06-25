@@ -10,8 +10,10 @@ import FirebaseCore
 
 @main
 struct PaceSync_LoginApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    
     init() {
-        FirebaseApp.configure()
+        
     }
     
     

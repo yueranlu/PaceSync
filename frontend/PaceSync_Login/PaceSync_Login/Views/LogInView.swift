@@ -6,6 +6,9 @@
 //
 
 import SwiftUI
+import FirebaseAuth
+import GoogleSignIn
+import Firebase
 
 struct LogInView: View {
     @StateObject var viewModel = LogInViewViewModel()
@@ -35,13 +38,13 @@ struct LogInView: View {
                         .font(.title)
                         .bold()
                         .padding()
-                        .offset(y: -180)
+                        .offset(y: -150)
                     TextField("Email", text: $viewModel.email)
                         .padding()
                         .frame(width: 300, height: 50)
                         .background(Color.black.opacity(0.05))
                         .cornerRadius(10)
-                        .offset(y: -65)
+                        .offset(y: -15)
                         .autocorrectionDisabled(true)
                         .textInputAutocapitalization(.never)
                     SecureField("Password", text: $viewModel.password)
@@ -49,13 +52,13 @@ struct LogInView: View {
                         .frame(width: 300, height: 50)
                         .background(Color.black.opacity(0.05))
                         .cornerRadius(10)
-                        .offset(y: -65)
+                        .offset(y: -15)
                         .border(.red, width: CGFloat(wrongPassword))
                         .autocorrectionDisabled(true)
                         .textInputAutocapitalization(.never)
                     Text("OR")
                         .foregroundColor(.black.opacity(0.8))
-                        .offset(y: 130)
+                        .offset(y: 150)
                     
                     Button("Log in") {
                         viewModel.login()
@@ -69,7 +72,7 @@ struct LogInView: View {
                     .frame(width: 300, height: 50)
                     .background(Color.gray.opacity(0.5))
                     .cornerRadius(10)
-                    .offset(y: -45)
+                    .offset(y: -10)
                     
                     Button("Forgot Password?") {
                         path.append("forgotPassword")
@@ -81,7 +84,7 @@ struct LogInView: View {
                             alignment: .bottom
                         )
                         .foregroundColor(.black.opacity(0.6))
-                        .offset(y: -20)
+                        .offset(y: 10)
                     
                     Button("Register") {
                         path.append("register")
@@ -94,8 +97,42 @@ struct LogInView: View {
                             .foregroundColor(.black.opacity(0.6)),
                         alignment: .bottom
                     )
-                    .offset(x: 135, y: -540)
+                    .offset(x: 135, y: -530)
                     
+                    GoogleButton {
+                        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+
+                        // Create Google Sign In configuration object.
+                        let config = GIDConfiguration(clientID: clientID)
+                        GIDSignIn.sharedInstance.configuration = config
+
+                        // Start the sign in flow!
+                        GIDSignIn.sharedInstance.signIn(withPresenting: getRootViewController()) { result, error in
+                            
+                          if let error = error {
+                              return
+                          }
+
+                          guard let user = result?.user,
+                                let idToken = user.idToken
+                                
+                          else {
+                              return
+                          }
+                            
+                            let accessToken = user.accessToken
+                            let credential = GoogleAuthProvider.credential(withIDToken: idToken.tokenString,
+                                                                         accessToken: accessToken.tokenString)
+                            
+                            Auth.auth().signIn(with: credential) { authResult, error in
+
+                            }
+
+                        }
+                        
+
+                    }
+                    .offset(y: 40)
                     
                     }
                 }

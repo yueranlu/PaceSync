@@ -23,6 +23,7 @@ class LogInViewViewModel: ObservableObject {
         Auth.auth().signIn(withEmail: email, password: password)
     }
     
+    
     private func validate() -> Bool {
         errorMessage = ""
         
