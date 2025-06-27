@@ -6,26 +6,22 @@
 //
 
 import SwiftUI
-import FirebaseCore
+import Firebase
 import GoogleSignIn
 
 
 class AppDelegate: NSObject, UIApplicationDelegate {
   func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-      if FirebaseApp.app() == nil {
-          FirebaseApp.configure()
-      }
-
+      
+    FirebaseApp.configure()
     return true
   }
     
-    func application(_ app: UIApplication,
+    func application(_ application: UIApplication,
                      open url: URL,
-                     options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+                     options: [UIApplication.OpenURLOptionsKey: Any]) -> Bool {
       return GIDSignIn.sharedInstance.handle(url)
     }
-    
-    override init() { FirebaseApp.configure() }
-    
+        
 }

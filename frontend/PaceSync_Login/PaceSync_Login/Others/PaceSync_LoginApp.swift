@@ -11,15 +11,15 @@ import FirebaseCore
 @main
 struct PaceSync_LoginApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    
-    init() {
-        
-    }
-    
-    
+    @AppStorage("loggedIn") var loggedIn = false
+
     var body: some Scene {
         WindowGroup {
-            LogInView()
+            if !loggedIn {
+                LogInView()
+            } else {
+                HomepageView()
+            }
         }
     }
 }

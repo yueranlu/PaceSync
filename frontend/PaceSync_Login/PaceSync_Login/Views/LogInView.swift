@@ -107,13 +107,13 @@ struct LogInView: View {
                         GIDSignIn.sharedInstance.configuration = config
 
                         // Start the sign in flow!
-                        GIDSignIn.sharedInstance.signIn(withPresenting: getRootViewController()) { result, error in
+                        GIDSignIn.sharedInstance.signIn(withPresenting: getRootViewController()) { signResult, error in
                             
                           if let error = error {
                               return
                           }
 
-                          guard let user = result?.user,
+                          guard let user = signResult?.user,
                                 let idToken = user.idToken
                                 
                           else {
@@ -127,12 +127,20 @@ struct LogInView: View {
                             Auth.auth().signIn(with: credential) { authResult, error in
 
                             }
+                            
+                            UserDefaults.standard.set(true, forKey: "loggedIn")
 
                         }
                         
 
                     }
                     .offset(y: 40)
+                    
+//                    Button("Sign Out & Clear Cache") {
+//                        GIDSignIn.sharedInstance.signOut()
+//                        try? Auth.auth().signOut()
+//                        print("✅ Signed out and cleared cache")
+//                    }
                     
                     }
                 }
