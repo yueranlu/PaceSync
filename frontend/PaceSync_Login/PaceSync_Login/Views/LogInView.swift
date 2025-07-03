@@ -110,6 +110,8 @@ struct LogInView: View {
                         GIDSignIn.sharedInstance.signIn(withPresenting: getRootViewController()) { signResult, error in
                             
                           if let error = error {
+                              print("Google Sign-In error: \(error.localizedDescription)")
+                              print("Full error: \(error)")
                               return
                           }
 
@@ -151,7 +153,7 @@ struct LogInView: View {
                 case "loggedIn":
                     HomepageView()
                 case "forgotPassword":
-                    Text("temporary")
+                    ForgotPasswordView(path: $path)
                 case "register":
                     RegistrationView(path: $path)
                 default:
