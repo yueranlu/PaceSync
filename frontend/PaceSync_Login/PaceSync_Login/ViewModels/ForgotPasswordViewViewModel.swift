@@ -8,5 +8,5 @@
 import Foundation
 
 class ForgotPasswordViewViewModel: ObservableObject {
-    
+    @Published var email = ""
 }
