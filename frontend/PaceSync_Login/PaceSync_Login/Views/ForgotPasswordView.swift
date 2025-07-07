@@ -27,7 +27,7 @@ struct ForgotPasswordView: View {
                     Text("Forgot your password?")
                         .font(.title)
                         .padding()
-                        .offset(x: -25, y: -20)
+                        .offset(x: -25, y: -15)
                     
                     Text("Please enter the email address associated to your account")
                         .font(.subheadline)
@@ -43,15 +43,21 @@ struct ForgotPasswordView: View {
                         .autocorrectionDisabled(true)
                         .textInputAutocapitalization(.never)
                     
-                    Button("Log in") {
-
+                    Button("Send Email") {
+                        Task {
+                            do {
+                                try await viewModel.forgotPassword(email: viewModel.email)
+                            } catch {
+                                print(error)
+                            }
+                        }
                     }
                     .foregroundColor(Color.white)
                     .bold()
                     .frame(width: 300, height: 50)
                     .background(Color.gray.opacity(0.5))
                     .cornerRadius(10)
-                    .offset(y: -45)
+                    .offset(y: -35)
                     
                     Button("Back to Login") {
                         dismiss()
@@ -63,7 +69,7 @@ struct ForgotPasswordView: View {
                             .foregroundColor(.black.opacity(0.6)),
                         alignment: .bottom
                     )
-                    .offset(y: -25)
+                    .offset(y: -15)
                     
                 }
             }

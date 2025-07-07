@@ -6,7 +6,12 @@
 //
 
 import Foundation
+import FirebaseAuth
 
 class ForgotPasswordViewViewModel: ObservableObject {
     @Published var email = ""
+    
+    func forgotPassword(email: String) async throws {
+        try await Auth.auth().sendPasswordReset(withEmail: email)
+    }
 }
