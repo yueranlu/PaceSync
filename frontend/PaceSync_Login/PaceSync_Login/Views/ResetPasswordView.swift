@@ -51,14 +51,17 @@ struct ResetPasswordView: View {
                         .textInputAutocapitalization(.never)
                     
                     Button("Reset Password") {
-
+                        if viewModel.canResetPassword {
+                            
+                        }
                     }
                     .foregroundColor(Color.white)
                     .bold()
                     .frame(width: 300, height: 50)
-                    .background(Color.gray.opacity(0.5))
+                    .background(viewModel.canResetPassword ? Color.gray.opacity(0.9) : Color.gray.opacity(0.5))
                     .cornerRadius(10)
                     .offset(y: -10)
+                    .disabled(!viewModel.canResetPassword)
                     
                     Button("Back to Login") {
                         dismiss()

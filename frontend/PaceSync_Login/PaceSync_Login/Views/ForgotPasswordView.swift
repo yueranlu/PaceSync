@@ -13,7 +13,6 @@ struct ForgotPasswordView: View {
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
-        NavigationStack(path: $path) {
             ZStack {
                 Color.gray.opacity(0.15)
                     .ignoresSafeArea()
@@ -27,10 +26,11 @@ struct ForgotPasswordView: View {
                     Text("Forgot your password?")
                         .font(.title)
                         .padding()
-                        .offset(x: -25, y: -15)
+                        .offset(x: -14, y: -15)
                     
                     Text("Please enter the email address associated to your account")
                         .font(.subheadline)
+                        .frame(width: 300)
                         .padding()
                         .offset(x: -6, y: -45)
                     
@@ -47,6 +47,7 @@ struct ForgotPasswordView: View {
                         Task {
                             do {
                                 try await viewModel.forgotPassword(email: viewModel.email)
+                                dismiss()
                             } catch {
                                 print(error)
                             }
@@ -73,7 +74,8 @@ struct ForgotPasswordView: View {
                     
                 }
             }
-        }
+        
+            .navigationBarHidden(true)
     }
 }
 

@@ -61,18 +61,21 @@ struct LogInView: View {
                         .offset(y: 150)
                     
                     Button("Log in") {
-                        viewModel.login()
-                        
-                        if viewModel.loggedIn {
-                            path.append("loggedIn")
+                        Task {
+                            try await viewModel.login(withEmail: viewModel.email, password: viewModel.password)
+                            
+                            if viewModel.loggedIn {
+                                path.append("loggedIn")
+                            }
+                            
                         }
                     }
                     .foregroundColor(Color.white)
                     .bold()
                     .frame(width: 300, height: 50)
-                    .background(Color.gray.opacity(0.5))
-                    .cornerRadius(10)
+                    .background(viewModel.canLogIn ? Color.gray.opacity(0.9) : Color.gray.opacity(0.5))                    .cornerRadius(10)
                     .offset(y: -10)
+                    .disabled(!viewModel.canLogIn)
                     
                     Button("Forgot Password?") {
                         path.append("forgotPassword")

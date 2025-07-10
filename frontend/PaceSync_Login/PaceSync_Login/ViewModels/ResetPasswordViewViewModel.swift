@@ -21,5 +21,9 @@ class ResetPasswordViewViewModel: ObservableObject {
         password.trimmingCharacters(in: .whitespaces).count >= 8
     }
     
+    var canResetPassword: Bool {
+        passwordsMatch && isValidPassword
+    }
+    
 
 }
