@@ -14,6 +14,8 @@ private var disconnectCancellable: AnyCancellable?
 
 @MainActor
 final class SpotifyController: NSObject, ObservableObject, SPTAppRemoteDelegate {
+    @Published var isAuthorized = false
+    
     nonisolated func appRemoteDidEstablishConnection(_ appRemote: SPTAppRemote) {
         print("Spotify connected")
     }
@@ -27,7 +29,7 @@ final class SpotifyController: NSObject, ObservableObject, SPTAppRemoteDelegate 
     }
     
     let spotifyClientID = "b55d399d11934dfc9cc4941ef3d40e2b"
-    let spotifyRedirectURL = URL(string:"https://pacesync")!
+    let spotifyRedirectURL = URL(string:"pacesync-login://callback")!
     
     var accessToken: String? = nil
     
@@ -37,6 +39,7 @@ final class SpotifyController: NSObject, ObservableObject, SPTAppRemoteDelegate 
         if let accessToken = parameters?[SPTAppRemoteAccessTokenKey] {
             appRemote.connectionParameters.accessToken = accessToken
             self.accessToken = accessToken
+            isAuthorized = true
         } else if let errorDescription = parameters?[SPTAppRemoteErrorDescriptionKey] {
             // Handle the error
         }

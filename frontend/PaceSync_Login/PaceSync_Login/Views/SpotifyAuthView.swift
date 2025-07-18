@@ -14,6 +14,10 @@ struct SpotifyAuthView: View {
     var action: () -> Void
 
     var body: some View {
+        if spotifyController.isAuthorized {
+            HomepageView()
+        }
+        
         ZStack {
             Color.black.opacity(0.9)
                 .ignoresSafeArea()
@@ -39,7 +43,6 @@ struct SpotifyAuthView: View {
                 
                 if !spotifyController.appRemote.isConnected {
                     spotifyController.authorize()
-                    path.append("loggedIn")
                 }
                 
                 
