@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		44AB84DB2E286B3A007E352D /* SpotifyiOS in Frameworks */ = {isa = PBXBuildFile; productRef = 44AB84DA2E286B3A007E352D /* SpotifyiOS */; };
 		44B561002E0A06350065E739 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 44B560FF2E0A06350065E739 /* GoogleSignIn */; };
 		44B561022E0A06350065E739 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 44B561012E0A06350065E739 /* GoogleSignInSwift */; };
 		44D482B02E04DFD600FD6F9A /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 44D482AF2E04DFD600FD6F9A /* FirebaseAuth */; };
@@ -32,6 +33,7 @@
 			files = (
 				44D482B02E04DFD600FD6F9A /* FirebaseAuth in Frameworks */,
 				44D482D12E073A1D00FD6F9A /* FirebaseFirestore in Frameworks */,
+				44AB84DB2E286B3A007E352D /* SpotifyiOS in Frameworks */,
 				44B561002E0A06350065E739 /* GoogleSignIn in Frameworks */,
 				44B561022E0A06350065E739 /* GoogleSignInSwift in Frameworks */,
 			);
@@ -80,6 +82,7 @@
 				44D482D02E073A1D00FD6F9A /* FirebaseFirestore */,
 				44B560FF2E0A06350065E739 /* GoogleSignIn */,
 				44B561012E0A06350065E739 /* GoogleSignInSwift */,
+				44AB84DA2E286B3A007E352D /* SpotifyiOS */,
 			);
 			productName = PaceSync_Login;
 			productReference = 446D5BEC2DF777D700F43344 /* PaceSync_Login.app */;
@@ -97,7 +100,6 @@
 				TargetAttributes = {
 					446D5BEB2DF777D700F43344 = {
 						CreatedOnToolsVersion = 16.3;
-						LastSwiftMigration = 1630;
 					};
 				};
 			};
@@ -113,6 +115,7 @@
 			packageReferences = (
 				44D482AE2E04B9FB00FD6F9A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				44B560FE2E0A06350065E739 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				44AB84D92E286B3A007E352D /* XCRemoteSwiftPackageReference "ios-sdk" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 446D5BED2DF777D700F43344 /* Products */;
@@ -269,9 +272,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W3A8365229;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "PaceSync-Login-Info.plist";
@@ -285,12 +288,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "name.dongshenguan.PaceSync-Login";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "PaceSync_Login-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -301,9 +301,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W3A8365229;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "PaceSync-Login-Info.plist";
@@ -317,11 +317,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "name.dongshenguan.PaceSync-Login";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "PaceSync_Login-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -351,6 +349,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		44AB84D92E286B3A007E352D /* XCRemoteSwiftPackageReference "ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/spotify/ios-sdk";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		44B560FE2E0A06350065E739 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/google/GoogleSignIn-iOS.git";
@@ -370,6 +376,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		44AB84DA2E286B3A007E352D /* SpotifyiOS */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 44AB84D92E286B3A007E352D /* XCRemoteSwiftPackageReference "ios-sdk" */;
+			productName = SpotifyiOS;
+		};
 		44B560FF2E0A06350065E739 /* GoogleSignIn */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 44B560FE2E0A06350065E739 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;

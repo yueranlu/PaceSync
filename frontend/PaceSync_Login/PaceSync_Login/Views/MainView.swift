@@ -11,6 +11,7 @@ import SwiftUI
 
 struct MainView: View {
     @StateObject var viewModel = MainViewViewModel()
+    @StateObject private var spotifyController = SpotifyController()
     
     var body: some View {
         if viewModel.isSignedIn, !viewModel.currentUserId.isEmpty{

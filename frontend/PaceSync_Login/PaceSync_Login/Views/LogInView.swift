@@ -65,7 +65,7 @@ struct LogInView: View {
                             try await viewModel.login(withEmail: viewModel.email, password: viewModel.password)
                             
                             if viewModel.loggedIn {
-                                path.append("loggedIn")
+                                path.append("spotifyAuth")
                             }
                             
                         }
@@ -159,6 +159,8 @@ struct LogInView: View {
                     ForgotPasswordView(path: $path)
                 case "register":
                     RegistrationView(path: $path)
+                case "spotifyAuth":
+                    SpotifyAuthView(path: .constant(NavigationPath()), action: {})
                 default:
                     Text("Nothing")
                 }
