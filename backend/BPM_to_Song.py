@@ -13,7 +13,7 @@ app = FastAPI()
 
 sp = spotipy.Spotify(auth_manager = SpotifyOAuth(client_id="b55d399d11934dfc9cc4941ef3d40e2b",
                                                  client_secret="56cf7f92503942a8bcca70b53de6675b",
-                                                 redirect_uri="http://127.0.0.1:8000/auth_fail",
+                                                 redirect_uri="pacesync-login://callback",
                                                  scope="user-top-read")) #apparently this is needed for recommendations
 
 track_history = []
@@ -37,7 +37,7 @@ def bpm_to_song(current_tempo: int, genre: List[str]) -> Song: #global function 
     return Song(name = current_track['name'], artists = current_artist, id = current_track['id'])
 
 
-@app.post("/recommendations") #path to recs
+@app.get("/recommendations") #path to recs
 async def track_rec():
     current_track = bpm_to_song(current_tempo, genre)
     current_artist = current_artist = [a['name'] for a in current_track['artists']]
