@@ -34,7 +34,7 @@ final class SpotifyController: NSObject, ObservableObject, SPTAppRemoteDelegate 
     var accessToken: String? = nil
     
     func setAccessToken(from url: URL) {
-        let parameters = appRemote.authorizationParameters(from: url)
+        let parameters = appRemote.authorizationParameters( from: url)
         
         if let accessToken = parameters?[SPTAppRemoteAccessTokenKey] {
             appRemote.connectionParameters.accessToken = accessToken
