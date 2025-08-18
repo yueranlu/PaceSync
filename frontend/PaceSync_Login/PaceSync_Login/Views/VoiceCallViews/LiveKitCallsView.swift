@@ -10,8 +10,7 @@ import SwiftUI
 
 struct LiveKitCallsView: View {
     @StateObject private var room: Room
-    @StateObject var callStructures = CallStructures()
-    @State private var callStates: callStructures.CallStates = .disconnected
+    @State private var callStates: CallStates = .disconnected
 
     init() {
         let room = Room()
@@ -49,9 +48,9 @@ struct LiveKitCallsView: View {
             }
             switch callStates {
             case .disconnected:
-                Text("will be added")
+                LiveKitCallsView()
             case .connected:
-                Text("will be added")
+                InCallView(room: room)
             case .connecting:
                 Text("Connecting...")
             case .ended:

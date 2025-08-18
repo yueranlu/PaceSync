@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+import LiveKit
 
 struct InCallView: View {
-    @StateObject var mainView = LiveKitCallsView()
+    @ObservedObject var room: Room
+    @Binding var callState: CallStates
+    
     var body: some View {
         Button {
-            
+            callState = .disconnected
             
         } label: {
             ZStack {
@@ -26,5 +29,5 @@ struct InCallView: View {
 }
 
 #Preview {
-    InCallView()
+    InCallView(room: Room(), callState: .constant(.connected))
 }

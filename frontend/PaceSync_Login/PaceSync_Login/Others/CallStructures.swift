@@ -7,13 +7,11 @@
 
 import Foundation
 
-class CallStructures: ObservableObject {
-    enum CallStates {
-        case disconnected
-        case connected
-        case connecting
-        case ended
-        case calling(targetUser: String)
-        case incomingCall(fromUser: String)
-    }
+enum CallStates {
+    case disconnected
+    case connected
+    case connecting
+    case ended
+    case calling(targetUser: String)
+    case incomingCall(fromUser: String)
 }
