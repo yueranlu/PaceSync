@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		447A3A7C2E4D196900E7D1B9 /* LiveKit in Frameworks */ = {isa = PBXBuildFile; productRef = 447A3A7B2E4D196900E7D1B9 /* LiveKit */; };
+		447A3A7F2E4D197800E7D1B9 /* LiveKitComponents in Frameworks */ = {isa = PBXBuildFile; productRef = 447A3A7E2E4D197800E7D1B9 /* LiveKitComponents */; };
 		44AB84DB2E286B3A007E352D /* SpotifyiOS in Frameworks */ = {isa = PBXBuildFile; productRef = 44AB84DA2E286B3A007E352D /* SpotifyiOS */; };
 		44B561002E0A06350065E739 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 44B560FF2E0A06350065E739 /* GoogleSignIn */; };
 		44B561022E0A06350065E739 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 44B561012E0A06350065E739 /* GoogleSignInSwift */; };
@@ -34,8 +36,10 @@
 				44D482B02E04DFD600FD6F9A /* FirebaseAuth in Frameworks */,
 				44D482D12E073A1D00FD6F9A /* FirebaseFirestore in Frameworks */,
 				44AB84DB2E286B3A007E352D /* SpotifyiOS in Frameworks */,
+				447A3A7C2E4D196900E7D1B9 /* LiveKit in Frameworks */,
 				44B561002E0A06350065E739 /* GoogleSignIn in Frameworks */,
 				44B561022E0A06350065E739 /* GoogleSignInSwift in Frameworks */,
+				447A3A7F2E4D197800E7D1B9 /* LiveKitComponents in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +87,8 @@
 				44B560FF2E0A06350065E739 /* GoogleSignIn */,
 				44B561012E0A06350065E739 /* GoogleSignInSwift */,
 				44AB84DA2E286B3A007E352D /* SpotifyiOS */,
+				447A3A7B2E4D196900E7D1B9 /* LiveKit */,
+				447A3A7E2E4D197800E7D1B9 /* LiveKitComponents */,
 			);
 			productName = PaceSync_Login;
 			productReference = 446D5BEC2DF777D700F43344 /* PaceSync_Login.app */;
@@ -116,6 +122,8 @@
 				44D482AE2E04B9FB00FD6F9A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				44B560FE2E0A06350065E739 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				44AB84D92E286B3A007E352D /* XCRemoteSwiftPackageReference "ios-sdk" */,
+				447A3A7A2E4D196900E7D1B9 /* XCRemoteSwiftPackageReference "client-sdk-swift" */,
+				447A3A7D2E4D197800E7D1B9 /* XCRemoteSwiftPackageReference "components-swift" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 446D5BED2DF777D700F43344 /* Products */;
@@ -289,8 +297,8 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/PaceSync_Login/PaceSync_backend/.venv/lib/python3.9/site-packages/watchfiles",
 					"$(PROJECT_DIR)/PaceSync_Login/PaceSync_backend/.venv/lib/python3.9/site-packages/pydantic_core",
+					"$(PROJECT_DIR)/PaceSync_Login/PaceSync_backend/.venv/lib/python3.9/site-packages/watchfiles",
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "name.dongshenguan.PaceSync-Login";
@@ -323,8 +331,8 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/PaceSync_Login/PaceSync_backend/.venv/lib/python3.9/site-packages/watchfiles",
 					"$(PROJECT_DIR)/PaceSync_Login/PaceSync_backend/.venv/lib/python3.9/site-packages/pydantic_core",
+					"$(PROJECT_DIR)/PaceSync_Login/PaceSync_backend/.venv/lib/python3.9/site-packages/watchfiles",
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "name.dongshenguan.PaceSync-Login";
@@ -359,6 +367,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		447A3A7A2E4D196900E7D1B9 /* XCRemoteSwiftPackageReference "client-sdk-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/livekit/client-sdk-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.6.1;
+			};
+		};
+		447A3A7D2E4D197800E7D1B9 /* XCRemoteSwiftPackageReference "components-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/livekit/components-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.4;
+			};
+		};
 		44AB84D92E286B3A007E352D /* XCRemoteSwiftPackageReference "ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/spotify/ios-sdk";
@@ -386,6 +410,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		447A3A7B2E4D196900E7D1B9 /* LiveKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 447A3A7A2E4D196900E7D1B9 /* XCRemoteSwiftPackageReference "client-sdk-swift" */;
+			productName = LiveKit;
+		};
+		447A3A7E2E4D197800E7D1B9 /* LiveKitComponents */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 447A3A7D2E4D197800E7D1B9 /* XCRemoteSwiftPackageReference "components-swift" */;
+			productName = LiveKitComponents;
+		};
 		44AB84DA2E286B3A007E352D /* SpotifyiOS */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 44AB84D92E286B3A007E352D /* XCRemoteSwiftPackageReference "ios-sdk" */;
