@@ -1,0 +1,7 @@
+.env
+.venv
+.DS_Store
+*.log
+*.env
+frontend/PaceSync_Login/PaceSync_Login/.DS_Store
+frontend/PaceSync_Login/PaceSync_Login/.DS_Store

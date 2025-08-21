@@ -11,7 +11,6 @@ enum CallStates {
     case disconnected
     case connected
     case connecting
-    case ended
     case calling(targetUser: String)
     case incomingCall(fromUser: String)
 }

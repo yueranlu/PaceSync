@@ -18,7 +18,7 @@ struct LiveKitCallsView: View {
     }
 
     var body: some View {
-        Group { 
+        ZStack {
             if room.connectionState == .disconnected {
                 Button("Connect") {
                     Task {
@@ -47,18 +47,18 @@ struct LiveKitCallsView: View {
                 }
             }
             switch callStates {
+            
             case .disconnected:
-                LiveKitCallsView()
+                Text("Disconnected")
+                    .offset(y: 15)
             case .connected:
-                InCallView(room: room)
+                InCallView(room: room, callState: .constant(.connected))
             case .connecting:
                 Text("Connecting...")
-            case .ended:
-                Text("will be added")
             case .calling(let targetUser):
-                Text("will be added")
+                Text("Calling \(targetUser)...")
             case .incomingCall(let fromUser):
-                Text("will be added")
+                Text("Incoming call from \(fromUser)...")
             }
             
         }
