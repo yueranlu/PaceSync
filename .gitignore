@@ -1,7 +1,8 @@
 .env
+.env.livekit
 .venv
 .DS_Store
 *.log
-*.env
+__pycache__
 frontend/PaceSync_Login/PaceSync_Login/.DS_Store
 frontend/PaceSync_Login/PaceSync_Login/.DS_Store
