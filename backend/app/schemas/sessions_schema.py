@@ -53,7 +53,7 @@ class SessionResponse(BaseModel):
     class Config:
         orm_mode = True  # Enable ORM mode for compatibility with ORMs like SQLAlchemy
 
-class SessionJoinReponse(BaseModel):
+class SessionJoinResponse(BaseModel):
     message: str = "Joined run"
     session: SessionResponse
     participants_info: Participant

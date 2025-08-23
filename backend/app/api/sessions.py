@@ -9,7 +9,7 @@ from schemas.sessions_schema import (
     SessionStatus,
     SessionJoin,
     SessionResponse,
-    SessionJoinReponse,
+    SessionJoinResponse,
     ErrorResponse,
 )
 
@@ -34,6 +34,8 @@ async def create_session(session: SessionCreate):
         "livekit_token": livekit_token,
         "livekit_room": session.session_name,
     }
-    
+
     sessions_db[session_id] = session_data
     return session_data
+
+@router.post("/join", reponse_model=SessionJoinResponse)
