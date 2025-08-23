@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 #API routers
 from schemas.sessions_schema import ErrorResponse
-from sessions import router as sessions_router
+from backend.app.api.sessions import router as sessions_router
 
 app = FastAPI()
 

@@ -2,7 +2,7 @@
 
 from fastapi import APIRouter, HTTPException, Depends
 import uuid
-from LiveKit_Token import generate_token
+from backend.app.api.LiveKit_Token import generate_token
 
 from schemas.sessions_schema import (
     SessionCreate,
