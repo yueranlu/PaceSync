@@ -22,7 +22,6 @@ sessions_db = {}
 @router.post("/create", response_model=SessionResponse)
 async def create_session(session: SessionCreate):
     session_id = str(uuid.uuid4()) # Generate a unique session ID
-    livekit_token = generate_token(identity=session_id, room_name=session.session_name)
 
     session_data = {
         "session_id": session_id,
@@ -31,7 +30,6 @@ async def create_session(session: SessionCreate):
         "max_participants": session.max_participants,
         "status": SessionStatus.ACTIVE,
         "participants": [],
-        "livekit_token": livekit_token,
         "livekit_room": session.session_name,
     }
 
@@ -62,3 +60,23 @@ async def join_session(session_id: str, join_data: SessionJoin):
     
     session["participants"].append(new_participant.model_dump())
     sessions_db[session_id] = session
+
+    participant_token = generate_token(identity=user_id, room_name=session["session_name"])
+
+    return SessionJoinResponse(
+        message = "Joined run",
+        session = SessionResponse(**session),
+        participants_info = new_participant,
+        livekit_token = participant_token
+    )
+
+@router.get("/{session_id}", response_model=SessionResponse)
+async def get_session(session_id: str):
+    if session_id not in sessions_db:
+        raise HTTPException(status_code=404, detail="Session not found")
+
+    if sessions_db[session_id]["status"] != SessionStatus.ACTIVE:
+        raise HTTPException(status_code=400, detail="Session is not active")
+    
+    return SessionResponse(**sessions_db[session_id])
+
