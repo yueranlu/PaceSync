@@ -38,4 +38,7 @@ async def create_session(session: SessionCreate):
     sessions_db[session_id] = session_data
     return session_data
 
-@router.post("/join", reponse_model=SessionJoinResponse)
+@router.post("/join", response_model=SessionJoinResponse)
+async def join_session(session: SessionJoin):
+    # Implementation for joining a session
+    pass
