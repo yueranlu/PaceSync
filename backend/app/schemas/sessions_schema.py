@@ -47,7 +47,6 @@ class SessionResponse(BaseModel):
     max_participants: int = 6
     participants: list[Participant] = []
 
-    livekit_token: str = Field(..., description="LiveKit token for the session")
     livekit_room: str = Field(..., description="LiveKit room name for the session")
     
     class Config:
@@ -57,6 +56,8 @@ class SessionJoinResponse(BaseModel):
     message: str = "Joined run"
     session: SessionResponse
     participants_info: Participant
+    livekit_token: str = Field(..., description="LiveKit token for each participant")
+
 
 class ErrorResponse(BaseModel):
     error: str
